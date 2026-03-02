@@ -1,0 +1,147 @@
+INSTRUKSI PENGEMBANGAN BACKEND LARAVEL FILAMENT - MTS ALHASANIYAH
+
+1. KONTEKS PROYEK
+Buatlah backend untuk website sekolah "MTS ALHASANIYAH" menggunakan Laravel 11 dan Filament PHP v3. Sistem ini harus mencakup Model, Migration, dan Filament Resource untuk mengelola data sekolah.
+
+2. STRUKTUR DATABASE DAN MODEL (MIGRATIONS)
+Mohon buatkan file migration dan model dengan spesifikasi field sebagai berikut:
+
+Model: SchoolProfile
+
+nama_sekolah (string)
+
+visi (text)
+
+misi (text)
+
+sejarah (longText)
+
+alamat (text)
+
+email (string)
+
+telepon (string)
+
+logo (string, nullable)
+
+sambutan_kepala_sekolah (text)
+
+foto_kepala_sekolah (string, nullable)
+
+
+Model: Alumni
+
+nama_lengkap (string)
+
+angkatan_tahun (year)
+
+pekerjaan_sekarang (string)
+
+testimoni (text, nullable)
+
+foto (string, nullable)
+
+linkedin_url (string, nullable)
+
+Model: Achievement (Prestasi)
+
+judul_prestasi (string)
+
+nama_siswa (string)
+
+kategori (enum: Akademik, Non-Akademik)
+
+tingkat (enum: Kecamatan, Kabupaten, Provinsi, Nasional, Internasional)
+
+tahun (year)
+
+deskripsi (text)
+
+foto_pemenang (string)
+
+Model: Gallery
+
+judul (string)
+
+kategori (enum: Kegiatan, Fasilitas, Lingkungan)
+
+image_path (string)
+
+deskripsi (string, nullable)
+
+Model: Blog
+
+judul (string)
+
+slug (string, unique)
+
+konten (richText / longText)
+
+thumbnail (string)
+
+status (enum: Draft, Published)
+
+dipublikasikan_pada (timestamp)
+
+Model: Announcement (Pengumuman)
+
+judul (string)
+
+slug (string, unique)
+
+isi_pengumuman (richText)
+
+file_lampiran (string, nullable untuk PDF)
+
+status_aktif (boolean, default true)
+
+Model: Registration (PSB - Penerimaan Santri Baru)
+
+nomor_pendaftaran (string, unique)
+
+nama_lengkap (string)
+
+nisn (string, 10 digit)
+
+tempat_lahir (string)
+
+tanggal_lahir (date)
+
+jenis_kelamin (enum: Laki-laki, Perempuan)
+
+nama_ayah (string)
+
+nama_ibu (string)
+
+nomor_whatsapp (string)
+
+asal_sekolah (string)
+
+status_seleksi (enum: Proses, Diterima, Tidak Diterima)
+
+Model: ContactMessage (Hubungi Kami)
+
+nama_pengirim (string)
+
+email (string)
+
+subjek (string)
+
+pesan (text)
+
+dibaca (boolean, default false)
+
+3. FILAMENT RESOURCE CUSTOMIZATION
+Tolong buatkan Filament Resource untuk setiap model di atas dengan ketentuan:
+
+Gunakan 'Spatie Sluggable' atau logic otomatis untuk field 'slug' pada Blog dan Pengumuman berdasarkan 'judul'.
+
+Semua upload gambar menggunakan folder penyimpanan yang rapi (misal: 'public/alumni', 'public/blog').
+
+Untuk Resource 'Registration' (PSB), buat agar data tidak bisa diedit oleh sembarang orang, kecuali status_seleksi.
+
+Tambahkan fitur 'Filter' berdasarkan tahun pada Alumni dan Prestasi.
+
+Tambahkan 'Searchable' pada kolom nama dan judul di setiap table resource.
+
+Gunakan Layout Grid (2 kolom) pada Form di Filament agar tampilan admin lebih rapi.
